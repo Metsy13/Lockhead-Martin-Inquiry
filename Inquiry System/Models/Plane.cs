@@ -20,8 +20,6 @@ namespace Inquiry_System.Models
 
         public byte[] Photo { get; set; }
         public string PhotoContentType { get; set; }
-
-        //dido e gei
     }
 
 }
