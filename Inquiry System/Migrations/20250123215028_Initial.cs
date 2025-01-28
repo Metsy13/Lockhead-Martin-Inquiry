@@ -12,21 +12,16 @@ namespace Inquiry_System.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Planes",
+                name: "PlaneTypes",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Specifications = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Type = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Availability = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Photo = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
-                    PhotoContentType = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Planes", x => x.Id);
+                    table.PrimaryKey("PK_PlaneTypes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -45,6 +40,30 @@ namespace Inquiry_System.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Planes",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Specifications = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PlaneTypeID = table.Column<int>(type: "int", nullable: false),
+                    Availability = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Photo = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    PhotoContentType = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Planes", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Planes_PlaneTypes_PlaneTypeID",
+                        column: x => x.PlaneTypeID,
+                        principalTable: "PlaneTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -111,6 +130,11 @@ namespace Inquiry_System.Migrations
                 column: "PlaneID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Planes_PlaneTypeID",
+                table: "Planes",
+                column: "PlaneTypeID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_StatusHistories_InquiryID",
                 table: "StatusHistories",
                 column: "InquiryID");
@@ -135,6 +159,9 @@ namespace Inquiry_System.Migrations
 
             migrationBuilder.DropTable(
                 name: "Planes");
+
+            migrationBuilder.DropTable(
+                name: "PlaneTypes");
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Inquiry_System.Models
 {
@@ -13,8 +14,10 @@ namespace Inquiry_System.Models
         public string Specifications { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        public string Type { get; set; }
+        public int PlaneTypeID { get; set; }
+
+        [ForeignKey("PlaneTypeID")]
+        public PlaneType PlaneType { get; set; }
 
         public string Availability { get; set; }
 

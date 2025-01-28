@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Inquiry_System.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250120183418_Initial")]
+    [Migration("20250123215028_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -114,18 +114,35 @@ namespace Inquiry_System.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("PlaneTypeID")
+                        .HasColumnType("int");
+
                     b.Property<string>("Specifications")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.HasKey("Id");
+
+                    b.HasIndex("PlaneTypeID");
+
+                    b.ToTable("Planes");
+                });
+
+            modelBuilder.Entity("Inquiry_System.Models.PlaneType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
                     b.Property<string>("Type")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Planes");
+                    b.ToTable("PlaneTypes");
                 });
 
             modelBuilder.Entity("Inquiry_System.Models.StatusHistory", b =>
@@ -213,6 +230,17 @@ namespace Inquiry_System.Migrations
                         .IsRequired();
 
                     b.Navigation("Plane");
+                });
+
+            modelBuilder.Entity("Inquiry_System.Models.Plane", b =>
+                {
+                    b.HasOne("Inquiry_System.Models.PlaneType", "PlaneType")
+                        .WithMany()
+                        .HasForeignKey("PlaneTypeID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PlaneType");
                 });
 
             modelBuilder.Entity("Inquiry_System.Models.StatusHistory", b =>
