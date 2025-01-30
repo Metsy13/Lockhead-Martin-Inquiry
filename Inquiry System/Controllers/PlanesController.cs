@@ -21,7 +21,11 @@ namespace Inquiry_System.Controllers
         // GET: Planes
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Planes.ToListAsync());
+            var planes = await _context.Planes
+            .Include(p => p.PlaneType)
+            .ToListAsync();
+
+            return View(planes);
         }
 
         // GET: Planes/Details/5
@@ -45,6 +49,9 @@ namespace Inquiry_System.Controllers
         // GET: Planes/Create
         public IActionResult Create()
         {
+            var planeTypes = _context.PlaneTypes.ToList();
+            ViewData["PlaneTypes"] = new SelectList(planeTypes, "Id", "Type");
+
             return View();
         }
 

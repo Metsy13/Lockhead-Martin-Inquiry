@@ -12,7 +12,7 @@ namespace Inquiry_System.Models
         public string Title { get; set; }
 
         [Required]
-        public int PlaneID { get; set; }
+        public int PlaneId { get; set; }
 
         [ForeignKey("PlaneID")]
         public Plane Plane { get; set; }

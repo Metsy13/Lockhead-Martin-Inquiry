@@ -8,15 +8,15 @@ namespace Inquiry_System.Models
         public int Id { get; set; }
 
         [Required]
-        public int UserID { get; set; }
+        public int UserId { get; set; }
 
-        [ForeignKey("UserID")]
+        [ForeignKey("UserId")]
         public User User { get; set; }
 
         [Required]
-        public int InquiryID { get; set; }
+        public int InquiryId { get; set; }
 
-        [ForeignKey("InquiryID")]
+        [ForeignKey("InquiryId")]
         public Inquiry Inquiry { get; set; }
 
         [Required]

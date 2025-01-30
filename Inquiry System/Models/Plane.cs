@@ -14,9 +14,9 @@ namespace Inquiry_System.Models
         public string Specifications { get; set; }
 
         [Required]
-        public int PlaneTypeID { get; set; }
+        public int PlaneTypeId { get; set; }
 
-        [ForeignKey("PlaneTypeID")]
+        [ForeignKey("PlaneTypeId")]
         public PlaneType PlaneType { get; set; }
 
         public string Availability { get; set; }
