@@ -86,6 +86,10 @@ namespace Inquiry_System.Controllers
             {
                 return NotFound();
             }
+
+            var planeTypes = _context.PlaneTypes.ToList();
+            ViewData["PlaneTypes"] = new SelectList(planeTypes, "Id", "Type");
+
             return View(plane);
         }
 

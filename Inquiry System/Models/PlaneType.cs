@@ -8,5 +8,6 @@ namespace Inquiry_System.Models
 
         [Required]
         public string Type { get; set; }
+        public string Description { get; set; }
     }
 }

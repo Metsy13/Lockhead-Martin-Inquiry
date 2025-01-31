@@ -14,7 +14,7 @@ namespace Inquiry_System.Models
         [Required]
         public int PlaneId { get; set; }
 
-        [ForeignKey("PlaneID")]
+        [ForeignKey("PlaneId")]
         public Plane Plane { get; set; }
 
         [Required]

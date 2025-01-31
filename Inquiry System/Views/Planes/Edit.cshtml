@@ -18,9 +18,11 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="PlaneType" class="control-label"></label>
-                <input asp-for="PlaneType" class="form-control" />
-                <span asp-validation-for="PlaneType" class="text-danger"></span>
+                <label asp-for="PlaneTypeId" class="control-label">Plane Type</label>
+                <select asp-for="PlaneTypeId" class="form-control" asp-items="ViewBag.PlaneTypes">
+                    <option value="">-- Select Plane Type --</option>
+                </select>
+                <span asp-validation-for="PlaneTypeId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Specifications" class="control-label"></label>

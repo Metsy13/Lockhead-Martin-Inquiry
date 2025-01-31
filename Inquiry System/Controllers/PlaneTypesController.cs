@@ -53,7 +53,7 @@ namespace Inquiry_System.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Type")] PlaneType planeType)
+        public async Task<IActionResult> Create([Bind("Id,Type,Description")] PlaneType planeType)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace Inquiry_System.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Type")] PlaneType planeType)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Type,Description")] PlaneType planeType)
         {
             if (id != planeType.Id)
             {

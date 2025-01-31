@@ -8,14 +8,11 @@
 
 <p>
     <a asp-action="Create" class="btn btn-primary">Create New</a>
-    <a asp-controller="Planes" asp-action="Index" class="btn btn-success">Back To Plains</a>
 </p>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Type)
-            </th>
+            <th>@Html.DisplayNameFor(model => model.Type)</th>
             <th></th>
         </tr>
     </thead>
@@ -34,3 +31,6 @@
 }
     </tbody>
 </table>
+<div>
+    <a asp-controller="Planes" asp-action="Index">Back to Planes</a>
+</div>
